@@ -1,0 +1,27 @@
+{
+  "name": "bot-music-discord",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.1.0",
+    "@discordjs/opus": "^0.9.0",
+    "@discordjs/voice": "^0.16.1",
+    "discord-activity": "^1.0.4",
+    "discord.js": "^14.12.1",
+    "dotenv": "^16.4.5",
+    "ffmpeg": "^0.0.4",
+    "libsodium-wrappers": "^0.7.13",
+    "node-opus": "^0.3.3",
+    "opusscript": "^0.0.8",
+    "tweetnacl": "^1.0.3",
+    "ytdl-core": "^4.11.5",
+    "ytsearcher": "^1.2.4"
+  }
+}
