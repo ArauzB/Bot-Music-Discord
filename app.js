@@ -3,14 +3,15 @@ const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const { createAudioPlayer, createAudioResource, joinVoiceChannel } = require('@discordjs/voice');
 const { YTSearcher } = require('ytsearcher');
-const ytdl = require('ytdl-core');
+const ytdl = require('@distube/ytdl-core');
+require('dotenv').config();
 
 const bot = new Client({ intents: 3276799 });
-const myToken = ''; // Reemplaza con tu token bot discord
+const myToken = process.env.TOKENDISCORD; // Reemplaza con tu token bot discord
 
 const queue = new Map();
 const voiceConnections = new Map();
-const searcher = new YTSearcher(''); // Reemplaza con tu token youtube v3 api
+const searcher = new YTSearcher(process.env.TOKENYOUTUBE); // Reemplaza con tu token youtube v3 api
 const commands = [
     {
       name: 'play',
