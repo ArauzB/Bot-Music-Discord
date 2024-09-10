@@ -5,6 +5,7 @@ const { createAudioPlayer, createAudioResource, joinVoiceChannel } = require('@d
 const { YTSearcher } = require('ytsearcher');
 const ytdl = require('@distube/ytdl-core');
 require('dotenv').config();
+const { getRandomIPv6 } = require("@distube/ytdl-core/lib/utils");
 
 const bot = new Client({ intents: 3276799 });
 const myToken = process.env.TOKENDISCORD; // Reemplaza con tu token bot discord
@@ -171,16 +172,14 @@ async function playNextSong(guildId, message) {
   const streamOptions = {
     quality: "highestaudio",
     filter: "audioonly", 
-    highWaterMark: 1 << 25, 
-     requestOptions: {
-      headers: {
-        'cookie': 'CgJJThIEGgAgFQ%3D%3D', // Inserta tus cookies aquí
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3', // Cambia el User-Agent para parecer una solicitud desde un navegador
-      }
-    }
+    highWaterMark: 1 << 25,
   };
 
-  const stream = ytdl(song.url, streamOptions);
+  const agentForARandomIP = ytdl.createAgent(undefined, {
+    localAddress: getRandomIPv6("2001:2::/48"),
+  });
+  
+  const stream = ytdl(song.url, streamOptions , { agent: agentForARandomIP });
   const resource = createAudioResource(stream);
 
   const player = createAudioPlayer();
